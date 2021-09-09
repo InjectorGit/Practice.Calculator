@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Calculate
 {
-    class ClassFactoryMethod
+     public class ClassFactoryMethod
     {
-        public static calc calcMethod(int count)
+       public static calc calcMethod(int count)
         {
             switch (count)
             {
@@ -17,7 +17,7 @@ namespace Calculate
                 case 2:
                     return new MINUS();
                 case 3:
-                    return new DIVITION();
+                    return new DIVISION();
                 case 4:
                     return new MULTIPLY();
                 case 5:
@@ -29,7 +29,7 @@ namespace Calculate
 
         }
     }
-    interface calc
+    public interface calc
     {
         double Calculate(double firstValue, double secondValue);
     }
@@ -47,7 +47,7 @@ namespace Calculate
             return firstValue - secondValue;
         }
     }
-    public class DIVITION : calc
+    public class DIVISION : calc
     {
         public double Calculate(double firstValue, double secondValue)
         {

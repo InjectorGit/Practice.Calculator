@@ -47,7 +47,7 @@ namespace Calculate.Test
         public void CalculateTest(double firstValue, double secondValue, double expected)
         {
             //ARRANGE
-            var calc = new DIVITION();
+            var calc = new DIVISION();
 
             //ACT
             double actualResult = calc.Calculate(firstValue, secondValue);
@@ -93,4 +93,5 @@ namespace Calculate.Test
         }
     }
 
+  
 }
