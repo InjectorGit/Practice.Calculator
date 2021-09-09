@@ -16,10 +16,10 @@ namespace Calculate
         {
             InitializeComponent();
         }
-        char sign; // Знак
-        string firstNumber; // Первое число
-        string secondNumber; // Второе число
-        bool check_sign = false;
+        double firstValue; // Первое число
+        double secondValue; // Второе число
+        double result;
+        int count;
 
         private void button8_Click(object sender, EventArgs e)
         {
@@ -74,92 +74,58 @@ namespace Calculate
         private void button20_Click(object sender, EventArgs e)
         {
             textBox1.Text = null;
-            firstNumber = null;
-            secondNumber = null;
-            check_sign = false;
         }
-        public void calculate()
+
+        private void button5_Click(object sender, EventArgs e) //+
         {
-            int i = firstNumber.Length + 1;
-            while (i < textBox1.Text.Length)
+            firstValue = Double.Parse(textBox1.Text);
+            textBox1.Text += '+';
+            textBox1.Clear();
+         
+            count = 1;
+        }
+        private void button13_Click(object sender, EventArgs e) //*
+        {
+            firstValue = Double.Parse(textBox1.Text);
+            textBox1.Text += '+';
+            textBox1.Clear();
+            count = 4;
+        }
+
+        private void button9_Click(object sender, EventArgs e) //-
+        {
+            firstValue = Double.Parse(textBox1.Text);
+            textBox1.Text += '-';
+            textBox1.Clear();
+            count = 2;
+        }
+
+        private void button17_Click(object sender, EventArgs e) // /
+        {
+            firstValue = Double.Parse(textBox1.Text);
+            textBox1.Text += '/';
+            textBox1.Clear();
+            count=3;
+        }
+
+        private void button4_Click(object sender, EventArgs e) // =
+        {
+           
+            if (textBox1.Text != "")
             {
-                secondNumber += textBox1.Text[i]; 
-                i++;
-            }
-            if (sign == '+') { textBox1.Text = Convert.ToString(Convert.ToDouble(firstNumber) + Convert.ToDouble(secondNumber)); }
-            if (sign == '-') { textBox1.Text = Convert.ToString(Convert.ToDouble(firstNumber) - Convert.ToDouble(secondNumber)); }
-            if (sign == '*') { textBox1.Text = Convert.ToString(Convert.ToDouble(firstNumber) * Convert.ToDouble(secondNumber)); }
-            if (sign == '/') { textBox1.Text = Convert.ToString(Convert.ToDouble(firstNumber) / Convert.ToDouble(secondNumber)); }
-            if (sign == 'M')
-            {
-                if (Convert.ToDouble(firstNumber) > Convert.ToDouble(secondNumber))
-                {
-                    textBox1.Text = Convert.ToString(Convert.ToDouble(secondNumber));
-                }
-                else if ((Convert.ToDouble(firstNumber) < Convert.ToDouble(secondNumber)))
-                {
-                    textBox1.Text = Convert.ToString(Convert.ToDouble(firstNumber));
-                }
-                else if (Convert.ToDouble(firstNumber) == Convert.ToDouble(secondNumber))
-                {
-                    textBox1.Text = Convert.ToString(Convert.ToDouble(firstNumber));
-                }
+                secondValue = Double.Parse(textBox1.Text);
+                calc calculator = ClassFactoryMethod.calcMethod(count);
+                result = calculator.Calculate(firstValue, secondValue);
+                textBox1.Text = Convert.ToString(result);
             }
         }
 
-        private void button5_Click(object sender, EventArgs e)
+        private void button18_Click(object sender, EventArgs e) //  MINIMUM
         {
-            if (check_sign) { calculate(); }
-            sign = '+';
-            firstNumber = textBox1.Text;
-            textBox1.Text += "+";
-            check_sign = true;
-
-        }
-
-        private void button13_Click(object sender, EventArgs e)
-        {
-            if (check_sign) { calculate(); }
-            sign = '*';
-            firstNumber = textBox1.Text;
-            textBox1.Text += "*";
-            check_sign = true;
-        }
-
-        private void button9_Click(object sender, EventArgs e)
-        {
-            if (check_sign) { calculate(); }
-            sign = '-';
-            firstNumber = textBox1.Text;
-            textBox1.Text += "-";
-            check_sign = true;
-        }
-
-        private void button17_Click(object sender, EventArgs e)
-        {
-            if (check_sign) { calculate(); }
-            sign = '/';
-            firstNumber = textBox1.Text;
-            textBox1.Text += "/";
-            check_sign = true;
-        }
-
-        private void button4_Click(object sender, EventArgs e)
-        {
-            calculate();
-            check_sign = false;
-            secondNumber = null;
-            check_sign = false;
-
-        }
-
-        private void button18_Click(object sender, EventArgs e)
-        {
-            if (check_sign) { calculate(); }
-            sign = 'M';
-            firstNumber= textBox1.Text;
-            textBox1.Text += "`";
-            check_sign = true;
+            firstValue = Double.Parse(textBox1.Text);
+            textBox1.Text += '%';
+            textBox1.Clear();
+            count = 5;
         }
 
 
